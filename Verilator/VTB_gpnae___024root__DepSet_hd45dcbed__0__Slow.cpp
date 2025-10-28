@@ -127,7 +127,7 @@ VL_ATTR_COLD void VTB_gpnae___024root___eval_settle(VTB_gpnae___024root* vlSelf)
 #ifdef VL_DEBUG
             VTB_gpnae___024root___dump_triggers__stl(vlSelf);
 #endif
-            VL_FATAL_MT("/home/admin/Desktop/GPNAE/testbenches/TB_gpnae.sv", 3, "", "Settle region did not converge.");
+            VL_FATAL_MT("/home/admin/Desktop/SIENNA/GNAE/testbenches/TB_gpnae.sv", 3, "", "Settle region did not converge.");
         }
         __VstlIterCount = ((IData)(1U) + __VstlIterCount);
         __VstlContinue = 0U;

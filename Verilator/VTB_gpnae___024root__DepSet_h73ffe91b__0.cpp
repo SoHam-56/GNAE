@@ -32,12 +32,12 @@ VL_INLINE_OPT VlCoroutine VTB_gpnae___024root___eval_initial__TOP__Vtiming__1(VT
     auto& vlSelfRef = std::ref(*vlSelf).get();
     // Body
     co_await vlSelfRef.__VdlySched.delay(0x2540be400ULL, 
-                                         nullptr, "/home/admin/Desktop/GPNAE/testbenches/TB_gpnae.sv", 
+                                         nullptr, "/home/admin/Desktop/SIENNA/GNAE/testbenches/TB_gpnae.sv", 
                                          308);
     VL_WRITEF_NX("[%0t] %%Error: TB_gpnae.sv:308: Assertion failed in %NTB_gpnae: Testbench timeout!\n",0,
                  64,VL_TIME_UNITED_Q(1000),-9,vlSymsp->name());
-    VL_STOP_MT("/home/admin/Desktop/GPNAE/testbenches/TB_gpnae.sv", 308, "");
-    VL_FINISH_MT("/home/admin/Desktop/GPNAE/testbenches/TB_gpnae.sv", 309, "");
+    VL_STOP_MT("/home/admin/Desktop/SIENNA/GNAE/testbenches/TB_gpnae.sv", 308, "");
+    VL_FINISH_MT("/home/admin/Desktop/SIENNA/GNAE/testbenches/TB_gpnae.sv", 309, "");
 }
 
 #ifdef VL_DEBUG

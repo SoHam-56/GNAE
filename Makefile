@@ -24,7 +24,7 @@ DESIGN_FILES = \
 	TYTAN/MAC.sv \
 	TYTAN/Multiplier_FP32.sv \
 	TYTAN/UnSig_Karatsuba.sv \
-	TyMAC/UnSig_R4Booth.v \
+	TYTAN/UnSig_R4Booth.v \
 	Divider/Divider_FP32.sv \
 	Divider/divu.sv \
 	UpDown.sv \
