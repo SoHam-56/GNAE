@@ -3,14 +3,12 @@ PRJ_DIR = $(shell pwd)
 SRC_DIR = $(PRJ_DIR)/src
 TB_DIR = $(PRJ_DIR)/testbenches
 
-# Toolchain
 VERILATOR = verilator
 IVERILOG = iverilog
 VCS = vcs
 VVP = vvp
 WAVE = gtkwave
 
-# Design Files
 DESIGN_FILES = \
 	TYTAN/Memory/CoeffROM.v \
 	TYTAN/Memory/InputFIFO.v \
@@ -22,9 +20,9 @@ DESIGN_FILES = \
 	TYTAN/datapath.v \
 	TYTAN/LZC.v \
 	TYTAN/MAC.sv \
-	TYTAN/Multiplier_FP32.sv \
-	TYTAN/UnSig_Karatsuba.sv \
-	TYTAN/UnSig_R4Booth.v \
+	../ArithmeticLibrary/Multipliers/FP32/src/R4Booth.sv \
+	../ArithmeticLibrary/Multipliers/FP32/src/karatsubaUnsigned.sv \
+	../ArithmeticLibrary/Multipliers/FP32/src/fp32Multiplier.sv \
 	Divider/Divider_FP32.sv \
 	Divider/divu.sv \
 	UpDown.sv \
@@ -33,18 +31,13 @@ DESIGN_FILES = \
 	sigtan.sv \
 	gpnae.sv
 
-# Testbench
 TESTBENCH = TB_gpnae.sv
-
-# Top module
 TOP_MODULE = TB_gpnae
 
-# Directories
 VERILATOR_DIR = $(PRJ_DIR)/Verilator
 IVERILOG_DIR = $(PRJ_DIR)/Icarus
 VCS_DIR = $(PRJ_DIR)/VCS
 
-# Verilator Flags
 VERILATOR_FLAGS = \
 	--binary \
 	--trace \
@@ -59,7 +52,6 @@ VERILATOR_FLAGS = \
 	--Wno-WIDTHEXPAND \
 	--Wno-CASEINCOMPLETE
 
-# Icarus Verilog Flags
 IVERILOG_FLAGS = \
 	-g2012 \
 	-Wall \
@@ -67,7 +59,6 @@ IVERILOG_FLAGS = \
 	-I$(SRC_DIR) \
 	-I$(TB_DIR)
 
-# VCS Flags
 VCS_FLAGS = \
 	-full64 \
 	-sverilog \
@@ -78,10 +69,8 @@ VCS_FLAGS = \
 	+incdir+$(SRC_DIR) \
 	+incdir+$(TB_DIR)
 
-# Default target
 default: help
 
-# Help message
 help:
 	@echo "Simulation Targets:"
 	@echo "  make verilator    - Simulate using Verilator"
@@ -89,7 +78,6 @@ help:
 	@echo "  make vcs          - Simulate using Synopsys VCS"
 	@echo "  make clean        - Remove all simulation artifacts"
 
-# Verilator Simulation
 verilator:
 	@echo "-- Verilator simulation for GPNAE"
 	@mkdir -p $(VERILATOR_DIR)
@@ -102,7 +90,6 @@ verilator:
 	@echo "-- Running Verilator simulation"
 	$(VERILATOR_DIR)/./$(TOP_MODULE)_sim
 
-# Icarus Verilog Simulation
 iverilog:
 	@echo "-- Icarus Verilog simulation for GPNAE"
 	@mkdir -p $(IVERILOG_DIR)
@@ -114,7 +101,6 @@ iverilog:
 	cd $(IVERILOG_DIR) && $(VVP) ./$(TOP_MODULE)_sim -vcd=$(TOP_MODULE).vcd
 	@echo "-- Waveform generated at $(IVERILOG_DIR)/$(TOP_MODULE).vcd"
 
-# VCS Simulation
 vcs:
 	@echo "-- VCS simulation for GPNAE"
 	@mkdir -p $(VCS_DIR)
@@ -130,11 +116,9 @@ view:
 	@echo "-- Opening waveform"
 	$(WAVE) $(IVERILOG_DIR)/$(TOP_MODULE).vcd
 
-# Clean all simulation artifacts
 clean:
 	@echo "-- Cleaning simulation artifacts"
 	-rm -rf $(VERILATOR_DIR) $(IVERILOG_DIR) $(VCS_DIR)
 	-rm -f *.vpd *.vcd
 
-# Phony targets
 .PHONY: default help verilator iverilog vcs view clean
