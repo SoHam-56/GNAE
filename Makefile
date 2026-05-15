@@ -20,8 +20,8 @@ DESIGN_FILES = \
 	TYTAN/datapath.v \
 	TYTAN/LZC.v \
 	TYTAN/MAC.sv \
-	../ArithmeticLibrary/Multipliers/FP32/src/R4Booth.sv \
-	../ArithmeticLibrary/Multipliers/FP32/src/karatsubaUnsigned.sv \
+	../ArithmeticLibrary/Multipliers/Radix4Booth/src/R4Booth.sv \
+	../ArithmeticLibrary/Multipliers/Karatsuba/src/karatsubaUnsigned.sv \
 	../ArithmeticLibrary/Multipliers/FP32/src/fp32Multiplier.sv \
 	Divider/Divider_FP32.sv \
 	Divider/divu.sv \
