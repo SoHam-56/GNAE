@@ -28,16 +28,6 @@ module datapath #(
     result_o <= load_result_i ? adder_result : result_o;
   end
 
-  Adder_32 ADD (
-      .clk_i(clk_i),
-      .rstn_i(rstn_i),
-      .valid_i(add_valid_i),
-      .A(add_in1),
-      .B(add_in2),
-      .Result(adder_result),
-      .done_o(add_done_o)
-  );
-
   fp32Multiplier MUL (
       .clk_i      (clk_i),
       .rstn_i     (rstn_i),
@@ -51,18 +41,18 @@ module datapath #(
       .invalid_o  ()
   );
 
-  // fp32Adder ADD (
-  //     .clk_i      (clk_i),
-  //     .rstn_i     (rstn_i),
-  //     .valid_i    (add_valid_i),
-  //     .A          (add_in1),
-  //     .B          (add_in2),
-  //     .result_o   (adder_result),
-  //     .done_o     (add_done_o),
-  //     .overflow_o (),
-  //     .underflow_o(),
-  //     .invalid_o  ()
-  // );
+  fp32Adder ADD (
+      .clk_i      (clk_i),
+      .rstn_i     (rstn_i),
+      .valid_i    (add_valid_i),
+      .A          (add_in1),
+      .B          (add_in2),
+      .result_o   (adder_result),
+      .done_o     (add_done_o),
+      .overflow_o (),
+      .underflow_o(),
+      .invalid_o  ()
+  );
 
 endmodule
 

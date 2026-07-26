@@ -20,7 +20,7 @@ module SeLu (
   wire [31:0] multiply_result;
   wire done_multiply;
 
-  // Instantiate fp32_down (exponential) - only used for negative inputs
+  // fp32_down (exponential) - only used for negative inputs
   fp32_down fp32_down_inst (
       .clk_i(clk_i & !is_positive_selu),
       .rstn_i(rstn_i),
@@ -30,17 +30,6 @@ module SeLu (
       .done_o(done_fp32_down)
   );
 
-  // Instantiate multiplier - used for both paths
-  // multiply_32 multiply_32_inst (
-  //     .clk_i(clk_i),
-  //     .rstn_i(rstn_i),
-  //     .valid_i(valid_multiply),
-  //     .A(is_positive_selu ? A : fp32_down_result),  // Select input based on path
-  //     .B(selu_const),
-  //     .Result(multiply_result),
-  //     .done_o(done_multiply)
-  // );
-  //
   fp32Multiplier MUL (
       .clk_i      (clk_i),
       .rstn_i     (rstn_i),

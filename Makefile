@@ -15,18 +15,19 @@ DESIGN_FILES = \
 	TYTAN/Memory/PE5B.v \
 	TYTAN/Memory/RAM.v \
 	TYTAN/Memory/ROM.v \
-	TYTAN/Adder_FP32.v \
 	TYTAN/controller.sv \
 	TYTAN/datapath.v \
 	TYTAN/LZC.v \
-	TYTAN/MAC.sv \
+	TYTAN/mac.sv \
+	../ArithmeticLibrary/Adders/FP32/src/fp32Adder.sv \
+	../ArithmeticLibrary/Adders/FP32/src/LZC.sv \
 	../ArithmeticLibrary/Multipliers/Radix4Booth/src/R4Booth.sv \
 	../ArithmeticLibrary/Multipliers/Karatsuba/src/karatsubaUnsigned.sv \
 	../ArithmeticLibrary/Multipliers/FP32/src/fp32Multiplier.sv \
-	Divider/Divider_FP32.sv \
-	Divider/divu.sv \
-	UpDown.sv \
-	Down.sv \
+	../ArithmeticLibrary/Divider/FP32/src/fp32Divider.sv \
+	../ArithmeticLibrary/Divider/FP32/src/divu.sv \
+	fp32_down.sv \
+	fp32_up_down.sv \
 	SeLu.sv \
 	sigtan.sv \
 	gpnae.sv
@@ -50,7 +51,8 @@ VERILATOR_FLAGS = \
 	--Mdir $(VERILATOR_DIR) \
 	--Wno-WIDTHTRUNC \
 	--Wno-WIDTHEXPAND \
-	--Wno-CASEINCOMPLETE
+	--Wno-CASEINCOMPLETE \
+	--Wno-MODDUP
 
 IVERILOG_FLAGS = \
 	-g2012 \
